@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://dabeen.me/"/>
-  <updated>2016-01-27T08:39:42.000Z</updated>
+  <updated>2016-01-28T10:04:34.000Z</updated>
   <id>http://dabeen.me/</id>
   
   <author>
@@ -13,6 +13,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[教育留学Wise站点开发时使用video标签时的一些问题总结]]></title>
+    <link href="http://dabeen.me/2016/01/28/%E6%95%99%E8%82%B2%E7%95%99%E5%AD%A6wise%E7%AB%99%E7%82%B9%E5%BC%80%E5%8F%91%E6%97%B6%E4%BD%BF%E7%94%A8video%E6%A0%87%E7%AD%BE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/"/>
+    <id>http://dabeen.me/2016/01/28/教育留学wise站点开发时使用video标签时遇到的一些问题/</id>
+    <published>2016-01-28T10:00:00.000Z</published>
+    <updated>2016-01-28T10:04:34.000Z</updated>
+    <content type="html"><![CDATA[<p>在移动端使用<code>video</code>进行视频播放时，遇到了各种各样的问题, 由于在 <code>ios</code> 系统对浏览器的限制，所以问题较少，而<code>android</code>系统中各种各样的浏览器各自实现了不同播放效果，有的浏览器的pm脑动大开，居然播放时自动弹出小窗口浮在界面上，类似黄色小广告，总之各种坑。<br>整理了一下，主要包括以下几点。</p>
+<a id="more"></a>
+<h4 id="u89C6_u9891_u6587_u4EF6_u517C_u5BB9_u6027_u95EE_u9898"><a href="#u89C6_u9891_u6587_u4EF6_u517C_u5BB9_u6027_u95EE_u9898" class="headerlink" title="视频文件兼容性问题"></a>视频文件兼容性问题</h4><p>在项目一开始，资源方给的资源是 <a href="http://baike.baidu.com/link?url=n-VBVJ1dr6yIvfFV3mBUMj3fcv328HkZhlSiWRnyH9GfYu4ZL0nlPqJueKcmxUEueHrw0fY0RWGqfW412wX6Yq" target="_blank" rel="external">webm</a> 格式的视频，<code>google</code> 家的视频标准，<code>google</code> 说效率好，<strong>但是</strong> <code>ios</code> 不能用啊！</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-webm.png" alt="webm兼容性" title="webm兼容性"></p>
+<p>在视频资源的选择上，兼容性最好的视频格式还是 <a href="http://baike.baidu.com/subview/1358/8980006.htm" target="_blank" rel="external">mp4</a></p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-mp4.png" alt="mp4兼容性" title="mp4兼容性"></p>
+<p>在项目中选择<code>mp4</code>的话基本能覆盖所有的浏览器</p>
+<p>当然如果你觉得还不够的话你可以使用 <a href="http://www.w3school.com.cn/tags/tag_source.asp" target="_blank" rel="external"><code>source</code></a> 标签为你的 <code>video</code> 准备多个不同类型的视频文件，当然这也意味着你的服务器要存储多份不同格式的资源。</p>
+<h4 id="u5404_u79CD_u4E0D_u540C_u6D4F_u89C8_u5668_u4E0A_video__u7A97_u53E3_u6709_u5404_u79CD_u4E0D_u540C_u7684_style"><a href="#u5404_u79CD_u4E0D_u540C_u6D4F_u89C8_u5668_u4E0A_video__u7A97_u53E3_u6709_u5404_u79CD_u4E0D_u540C_u7684_style" class="headerlink" title="各种不同浏览器上 video 窗口有各种不同的 style"></a>各种不同浏览器上 <code>video</code> 窗口有各种不同的 <code>style</code></h4><p>文件不能播放的问题解决了，于是又出现了新的问题，我们打开各种不同的手机的浏览器，发现同样一个页面，播放器的样式却五花八门。</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-player-style.jpg" alt="不同浏览器上的样式"></p>
+<blockquote>
+<p>上边的图片来自 <a href="http://www.xuanfengge.com/html5-video-play.html" target="_blank" rel="external">这里</a></p>
+</blockquote>
+<p>为了让大家在不同的浏览器中看到的样子都是一样的，在页面加载完时不显示播放器，而播放器的位置用一个封面和播放按钮代替，当点击封面时，再让播放器播放，如下图</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-imgForVideo.png" alt="为video覆盖一层img"></p>
+<blockquote>
+<p>最好不要用{display: none}或者{width:0;height:0;}的方式，因为这样视频元素会处于未激活的状态，给后续的处理带来麻烦。最佳的方式是将视频设置成1×1像素大小，放在视觉边缘的位置。from:<a href="http://www.xuanfengge.com/html5-video-play.html" target="_blank" rel="external">这里</a></p>
+</blockquote>
+<p>上边说的方式是比较合理的但是做的时候注意以下边缘的位置，如果是在页面内的边缘位置的话，在<strong>UC浏览器</strong>上播放按钮还是会神奇的显示露出来</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-uc-Video.png" alt="uc浏览器上按钮出来了"></p>
+<p>那就把他扔到火星好了, <code>left: -10000px</code>, 这样样式的问题算是基本解决了~</p>
+<h4 id="z-index__u5931_u6548_u95EE_u9898"><a href="#z-index__u5931_u6548_u95EE_u9898" class="headerlink" title="z-index 失效问题"></a><code>z-index</code> 失效问题</h4><p>后面开始播放视频了，真的<code>video</code>窗口出来了于是又出现了新一轮的问题，在播放时某些视频窗会一直在页面的最顶部,设置<code>z-index</code>也没有效果。严重影响页面的正常使用。</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-videoAlwaysTop.png" alt="video一直在最顶层"></p>
+<p><code>ios</code>上除了<strong>骄傲的启用了X5浏览服务的qq浏览器</strong>（qq的浏览器完全是小窗口式的）外，这个问题基本不存在，<code>safari</code>一般都是全屏播放，其他的浏览器有的是行内播放有的是与<code>safari</code>一样全屏播放，但都没有什么的问题；<strong>但是</strong> <code>android</code> 上这个问题比较严重，国产的好多浏览器都以上图的这种姿势显示。</p>
+<p>为了解决这个问题，尝试让视频直接全屏播放，但是这又出现了下面要说的<a href="/#全屏播放不兼容问题">全屏播放不兼容的问题</a></p>
+<p>既然不能全屏播放，又不能播放时，挡住了一些弹出的层，那只好让他在播放时不要出现那些弹出的层好了。</p>
+<p>于是就出现了一个解决方案，<strong>在点击播放按钮时，弹出一个遮罩，盖住整个页面，然后遮罩上有一个播放器下边有一个退出按钮，当然还要注意弹出后页面最好不能滚动，谨慎使用fixed</strong>。总之就是让播放器自己去一个小黑屋玩就好了，不要让一个害群之马影响世界的和谐友善，等你玩完了，再回来，大家还是会忘掉过去重新接纳他的，就像什么都没发生过一样~</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-video-self.png" alt="视频自己在一边播放"></p>
+<h4 id="u5168_u5C4F_u64AD_u653E_u4E0D_u517C_u5BB9_u95EE_u9898"><a href="#u5168_u5C4F_u64AD_u653E_u4E0D_u517C_u5BB9_u95EE_u9898" class="headerlink" title="全屏播放不兼容问题"></a>全屏播放不兼容问题</h4><p>还有这个全屏播放不兼容的问题</p>
+<p>其实大部分浏览器都是挺和谐的，<strong>玩完没想到</strong>的是我厂的手百居然给出了这样的姿势</p>
+<p><img src="http://7xq7um.com1.z0.glb.clouddn.com/dabeen-cn-160128-fullscreen.png" alt="手百全屏播放"></p>
+<p><strong>这尼玛也叫全屏！！！！！！这明显的五毛特效！</strong> 退出去的按钮居然都找不到了。这让页面上的其他元素怎么办。。</p>
+<p>本着兼容我厂产品的态度，这种全屏方式显然不可取。</p>
+<h3 id="u5176_u4ED6"><a href="#u5176_u4ED6" class="headerlink" title="其他"></a>其他</h3><p>video的坑还有很多，这里只写了几个在教育wise站中遇都的这几个，欢迎大家补充，指正。</p>
+<h3 id="u76F8_u5173_u8D44_u6599"><a href="#u76F8_u5173_u8D44_u6599" class="headerlink" title="相关资料"></a>相关资料</h3><p><a href="http://www.xuanfengge.com/html5-video-play.html" target="_blank" rel="external">移动端HTML5 video 视频播放优化实践</a></p>
+<p><a href="http://blog.csdn.net/zhangxin09/article/details/45147021" target="_blank" rel="external">HTML5 播放器心得与小结</a></p>
+<p><a href="https://www.w3.org/TR/html5/embedded-content-0.html#the-video-element" target="_blank" rel="external">W3C Video 标准</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在移动端使用<code>video</code>进行视频播放时，遇到了各种各样的问题, 由于在 <code>ios</code> 系统对浏览器的限制，所以问题较少，而<code>android</code>系统中各种各样的浏览器各自实现了不同播放效果，有的浏览器的pm脑动大开，居然播放时自动弹出小窗口浮在界面上，类似黄色小广告，总之各种坑。<br>整理了一下，主要包括以下几点。</p>]]>
+    
+    </summary>
+    
+      <category term="video html5 坑 前端" scheme="http://dabeen.me/tags/video-html5-%E5%9D%91-%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="前端开发" scheme="http://dabeen.me/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[2015总结与2016规划]]></title>

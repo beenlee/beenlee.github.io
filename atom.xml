@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://dabeen.me/"/>
-  <updated>2016-01-28T10:04:34.000Z</updated>
+  <updated>2016-01-28T10:07:52.000Z</updated>
   <id>http://dabeen.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://dabeen.me/2016/01/28/%E6%95%99%E8%82%B2%E7%95%99%E5%AD%A6wise%E7%AB%99%E7%82%B9%E5%BC%80%E5%8F%91%E6%97%B6%E4%BD%BF%E7%94%A8video%E6%A0%87%E7%AD%BE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/"/>
     <id>http://dabeen.me/2016/01/28/教育留学wise站点开发时使用video标签时遇到的一些问题/</id>
     <published>2016-01-28T10:00:00.000Z</published>
-    <updated>2016-01-28T10:04:34.000Z</updated>
+    <updated>2016-01-28T10:07:52.000Z</updated>
     <content type="html"><![CDATA[<p>在移动端使用<code>video</code>进行视频播放时，遇到了各种各样的问题, 由于在 <code>ios</code> 系统对浏览器的限制，所以问题较少，而<code>android</code>系统中各种各样的浏览器各自实现了不同播放效果，有的浏览器的pm脑动大开，居然播放时自动弹出小窗口浮在界面上，类似黄色小广告，总之各种坑。<br>整理了一下，主要包括以下几点。</p>
 <a id="more"></a>
 <h4 id="u89C6_u9891_u6587_u4EF6_u517C_u5BB9_u6027_u95EE_u9898"><a href="#u89C6_u9891_u6587_u4EF6_u517C_u5BB9_u6027_u95EE_u9898" class="headerlink" title="视频文件兼容性问题"></a>视频文件兼容性问题</h4><p>在项目一开始，资源方给的资源是 <a href="http://baike.baidu.com/link?url=n-VBVJ1dr6yIvfFV3mBUMj3fcv328HkZhlSiWRnyH9GfYu4ZL0nlPqJueKcmxUEueHrw0fY0RWGqfW412wX6Yq" target="_blank" rel="external">webm</a> 格式的视频，<code>google</code> 家的视频标准，<code>google</code> 说效率好，<strong>但是</strong> <code>ios</code> 不能用啊！</p>
@@ -63,7 +63,13 @@
     
     </summary>
     
-      <category term="video html5 坑 前端" scheme="http://dabeen.me/tags/video-html5-%E5%9D%91-%E5%89%8D%E7%AB%AF/"/>
+      <category term="html5" scheme="http://dabeen.me/tags/html5/"/>
+    
+      <category term="video" scheme="http://dabeen.me/tags/video/"/>
+    
+      <category term="前端" scheme="http://dabeen.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="坑" scheme="http://dabeen.me/tags/%E5%9D%91/"/>
     
       <category term="前端开发" scheme="http://dabeen.me/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     

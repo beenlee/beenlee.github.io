@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://dabeen.me/"/>
-  <updated>2016-01-28T12:17:23.000Z</updated>
+  <updated>2016-02-28T15:53:49.000Z</updated>
   <id>http://dabeen.me/</id>
   
   <author>
@@ -13,6 +13,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[翻译 Autoloading Standard [PSR-0]]]></title>
+    <link href="http://dabeen.me/2016/02/29/%E7%BF%BB%E8%AF%91%EF%BC%9AAutoloading%20Standard%5BPSR-0%5D/"/>
+    <id>http://dabeen.me/2016/02/29/翻译：Autoloading Standard[PSR-0]/</id>
+    <published>2016-02-28T16:00:00.000Z</published>
+    <updated>2016-02-28T15:53:49.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="u81EA_u52A8_u52A0_u8F7D_u6807_u51C6_Autoloading_Standard"><a href="#u81EA_u52A8_u52A0_u8F7D_u6807_u51C6_Autoloading_Standard" class="headerlink" title="自动加载标准 Autoloading Standard"></a>自动加载标准 Autoloading Standard</h1><blockquote>
+<p><strong>Deprecated</strong> - As of 2014-10-21 PSR-0 has been marked as deprecated. <a href="http://www.php-fig.org/psr/psr-4/" target="_blank" rel="external">PSR-4</a> is now recommended<br>as an alternative.<br><strong>已过时</strong> - PSR-0 已经在2014-10-21日被弃用。 推荐使用<a href="http://www.php-fig.org/psr/psr-4/" target="_blank" rel="external">PSR-4</a>。</p>
+</blockquote>
+<p>The following describes the mandatory requirements that must be adhered<br>to for autoloader interoperability.<br>下面介绍了使autoloader具有互操作性所必须遵守的条件。</p>
+<a id="more"></a>
+<h2 id="u5FC5_u8981_u6761_u4EF6_Mandatory"><a href="#u5FC5_u8981_u6761_u4EF6_Mandatory" class="headerlink" title="必要条件 Mandatory"></a>必要条件 Mandatory</h2><ul>
+<li>A fully-qualified namespace and class must have the following<br>structure <code>\&lt;Vendor Name&gt;\(&lt;Namespace&gt;\)*&lt;Class Name&gt;</code><br>一个完整有效的 <code>命名空间</code> 和 <code>类</code> 必须遵循以下结构： <code>\&lt;Vendor Name&gt;\(&lt;Namespace&gt;\)*&lt;Class Name&gt;</code></li>
+<li>Each namespace must have a top-level namespace (“Vendor Name”).<br>每个 <code>命名空间</code> 必须包含一个顶级的 <code>命名空间（&quot;Vendor Name&quot;）</code></li>
+<li>Each namespace can have as many sub-namespaces as it wishes.<br>每个 <code>命名空间</code> 可以拥有任意多个 <code>子命名空间</code></li>
+<li>Each namespace separator is converted to a <code>DIRECTORY_SEPARATOR</code> when<br>loading from the file system.<br>当从文件系统中加载文档时，每一个命名空间中的 <code>分隔符（separator）</code> 都要被转换为<code>DIRECTORY_SEPARATOR</code></li>
+<li>Each <code>_</code> character in the CLASS NAME is converted to a<br><code>DIRECTORY_SEPARATOR</code>. The <code>_</code> character has no special meaning in the<br>namespace.<br>所有的 <code>CLASS NAME(类名)</code> 中的字符 <code>_</code>，都要被转换为<code>DIRECTORY_SEPARATOR</code>。且字符 <code>_</code> 在命名空间中并没有特殊含义。</li>
+<li>The fully-qualified namespace and class is suffixed with <code>.php</code> when<br>loading from the file system.<br>当从文件系统中加载文档时，完整有效的命名空间和类要以 <code>.php</code> 结尾。</li>
+<li>Alphabetic characters in vendor names, namespaces, and class names may<br>be of any combination of lower case and upper case.<br>vendor names, namespaces, 和 class names 都可以由大写或者小写的英文字母组合而成。</li>
+</ul>
+<h2 id="u4F8B_u5B50_Examples"><a href="#u4F8B_u5B50_Examples" class="headerlink" title="例子 Examples"></a>例子 Examples</h2><ul>
+<li><code>\Doctrine\Common\IsolatedClassLoader</code> =&gt; <code>/path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php</code></li>
+<li><code>\Symfony\Core\Request</code> =&gt; <code>/path/to/project/lib/vendor/Symfony/Core/Request.php</code></li>
+<li><code>\Zend\Acl</code> =&gt; <code>/path/to/project/lib/vendor/Zend/Acl.php</code></li>
+<li><code>\Zend\Mail\Message</code> =&gt; <code>/path/to/project/lib/vendor/Zend/Mail/Message.php</code></li>
+</ul>
+<h2 id="u547D_u540D_u7A7A_u95F4_u4E0E_u7C7B_u540D_u4E2D_u9700_u8981_u5F3A_u8C03_u7684__uFF08Underscores_in_Namespaces_and_Class_Names_uFF09"><a href="#u547D_u540D_u7A7A_u95F4_u4E0E_u7C7B_u540D_u4E2D_u9700_u8981_u5F3A_u8C03_u7684__uFF08Underscores_in_Namespaces_and_Class_Names_uFF09" class="headerlink" title="命名空间与类名中需要强调的 （Underscores in Namespaces and Class Names）"></a>命名空间与类名中需要强调的 （Underscores in Namespaces and Class Names）</h2><ul>
+<li><code>\namespace\package\Class_Name</code> =&gt; <code>/path/to/project/lib/vendor/namespace/package/Class/Name.php</code></li>
+<li><code>\namespace\package_name\Class_Name</code> =&gt; <code>/path/to/project/lib/vendor/namespace/package_name/Class/Name.php</code></li>
+</ul>
+<p>The standards we set here should be the lowest common denominator for<br>painless autoloader interoperability. You can test that you are<br>following these standards by utilizing this sample SplClassLoader<br>implementation which is able to load PHP 5.3 classes.    </p>
+<p>我们在标准中所规定的，应当是对于无副作用的互操作性autoloader来说最基本特性。你可以试着遵循这些标准，实现样例 SplClassLoader去加载php5.3的类。</p>
+<h2 id="u6837_u4F8B_u5B9E_u73B0_Example_Implementation"><a href="#u6837_u4F8B_u5B9E_u73B0_Example_Implementation" class="headerlink" title="样例实现 Example Implementation"></a>样例实现 Example Implementation</h2><p>Below is an example function to simply demonstrate how the above<br>proposed standards are autoloaded.    </p>
+<p>以下是一个示例函数来简单的展示以上提到的标准是如何进行自动加载的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autoload</span><span class="params">(<span class="variable">$className</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="variable">$className</span> = ltrim(<span class="variable">$className</span>, <span class="string">'\\'</span>);</span><br><span class="line">    <span class="variable">$fileName</span>  = <span class="string">''</span>;</span><br><span class="line">    <span class="variable">$namespace</span> = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$lastNsPos</span> = strrpos(<span class="variable">$className</span>, <span class="string">'\\'</span>)) &#123;</span><br><span class="line">        <span class="variable">$namespace</span> = substr(<span class="variable">$className</span>, <span class="number">0</span>, <span class="variable">$lastNsPos</span>);</span><br><span class="line">        <span class="variable">$className</span> = substr(<span class="variable">$className</span>, <span class="variable">$lastNsPos</span> + <span class="number">1</span>);</span><br><span class="line">        <span class="variable">$fileName</span>  = str_replace(<span class="string">'\\'</span>, DIRECTORY_SEPARATOR, <span class="variable">$namespace</span>) . DIRECTORY_SEPARATOR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$fileName</span> .= str_replace(<span class="string">'_'</span>, DIRECTORY_SEPARATOR, <span class="variable">$className</span>) . <span class="string">'.php'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">require</span> <span class="variable">$fileName</span>;</span><br><span class="line">&#125;</span><br><span class="line">spl_autoload_register(<span class="string">'autoload'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="SplClassLoader__u65B9_u5F0F_u5B9E_u73B0__uFF08SplClassLoader_Implementation_uFF09"><a href="#SplClassLoader__u65B9_u5F0F_u5B9E_u73B0__uFF08SplClassLoader_Implementation_uFF09" class="headerlink" title="SplClassLoader 方式实现 （SplClassLoader Implementation）"></a>SplClassLoader 方式实现 （SplClassLoader Implementation）</h2><p>The following gist is a sample SplClassLoader implementation that can<br>load your classes if you follow the autoloader interoperability<br>standards proposed above. It is the current recommended way to load PHP<br>5.3 classes that follow these standards.    </p>
+<p>下边是一个以SplClassLoader形式实现的，并且遵循前边提到的 autoloader 互操作性标准的加载类的例子，这也正是当前被推荐的遵循标准的加载PHP 5.3 类的方式。</p>
+<ul>
+<li><a href="http://gist.github.com/221634" target="_blank" rel="external">http://gist.github.com/221634</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="u81EA_u52A8_u52A0_u8F7D_u6807_u51C6_Autoloading_Standard"><a href="#u81EA_u52A8_u52A0_u8F7D_u6807_u51C6_Autoloading_Standard" class="headerlink" title="自动加载标准 Autoloading Standard"></a>自动加载标准 Autoloading Standard</h1><blockquote>
+<p><strong>Deprecated</strong> - As of 2014-10-21 PSR-0 has been marked as deprecated. <a href="http://www.php-fig.org/psr/psr-4/">PSR-4</a> is now recommended<br>as an alternative.<br><strong>已过时</strong> - PSR-0 已经在2014-10-21日被弃用。 推荐使用<a href="http://www.php-fig.org/psr/psr-4/">PSR-4</a>。</p>
+</blockquote>
+<p>The following describes the mandatory requirements that must be adhered<br>to for autoloader interoperability.<br>下面介绍了使autoloader具有互操作性所必须遵守的条件。</p>]]>
+    
+    </summary>
+    
+      <category term="PHP 翻译" scheme="http://dabeen.me/tags/PHP-%E7%BF%BB%E8%AF%91/"/>
+    
+      <category term="翻译" scheme="http://dabeen.me/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[教育留学Wise站点开发时使用video标签时的一些问题总结]]></title>
